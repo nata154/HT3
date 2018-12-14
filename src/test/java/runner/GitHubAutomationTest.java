@@ -13,6 +13,7 @@ public class GitHubAutomationTest
 	private final String USERNAME = "nata154";
 	private final String PASSWORD = "J7j42jj8";
 	private final int REPOSITORY_NAME_POSTFIX_LENGTH = 3;
+	String newAdress = "natasha154154@gmail.com";
 
 	@BeforeMethod(description = "Init browser")
 	public void setUp()
@@ -38,7 +39,8 @@ public class GitHubAutomationTest
 		Assert.assertEquals(USERNAME, steps.getLoggedInUserName());
 	}
 	
-	@Test(description = "Create and delete repository")
+	@Test(enabled=false)
+	//(description = "Create and delete repository")
 	public void createAndDeleteRepository() {
 		steps.loginGithub(USERNAME, PASSWORD);
 		String repositoryName = steps.createFixNameRepository();
@@ -47,7 +49,14 @@ public class GitHubAutomationTest
 		steps.deleteRepository(repositoryName, PASSWORD);
 		Assert.assertTrue(steps.ensureDeleteRepository());
 	}
-
+	
+	@Test(description = "Add email")
+	public void addNewEmailInSettings() {
+		steps.loginGithub(USERNAME, PASSWORD);
+		steps.addEmailInSettings(newAdress);
+		Assert.assertFalse(steps.ensureAddEmail());
+	}
+	
 	@AfterMethod(description = "Stop Browser")
 	public void stopBrowser()
 	{

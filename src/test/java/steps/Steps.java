@@ -5,6 +5,7 @@ import pages.CreateNewRepositoryPage;
 import pages.DeleteRepositoryPage;
 import pages.LoginPage;
 import pages.MainPage;
+import pages.SettingsPage;
 import utils.Utils;
 
 import org.apache.logging.log4j.LogManager;
@@ -80,5 +81,17 @@ public class Steps
 		DeleteRepositoryPage deleteRepositoryName = new DeleteRepositoryPage(driver);
 		return deleteRepositoryName.hasDeletedSuchRepo();
 	}
+	
+	public void addEmailInSettings(String newAdress)
+	{
+		SettingsPage settingsPage = new SettingsPage(driver);
+		settingsPage.addEmails(newAdress);
+	}
 
-}
+	public boolean ensureAddEmail()
+	{
+		SettingsPage settingsPage = new SettingsPage(driver);
+		return settingsPage.wasEmailAdded();
+	}
+
+	}
