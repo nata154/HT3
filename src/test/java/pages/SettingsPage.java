@@ -14,7 +14,7 @@ public class SettingsPage extends AbstractPage{
 	
 	@FindBy(xpath = "//div[@id='js-pjax-container']/div/div[1]/nav[1]/a[3]")
 	private WebElement findEmailSettings;
-	
+		
 	@FindBy(xpath = "//input[@id='email']")
 	private WebElement findLineAddAdress;
 	

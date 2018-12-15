@@ -93,5 +93,14 @@ public class Steps
 		SettingsPage settingsPage = new SettingsPage(driver);
 		return settingsPage.wasEmailAdded();
 	}
-
+	
+	public void addBioToUser(String newBIO) {
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.addBio(newBIO);
 	}
+	
+	public String whatWasAddedInBio() {
+		LoginPage loginPage = new LoginPage(driver);
+		return loginPage.findlineWasAddedInBio();
+	}
+}

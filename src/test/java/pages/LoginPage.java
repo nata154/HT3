@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,7 +24,25 @@ public class LoginPage extends AbstractPage
 
 	@FindBy(xpath = "//meta[@name='user-login']")
 	private WebElement linkLoggedInUser;
-
+	
+	@FindBy(xpath = "//ul[@id='user-links']/li[3]/details/summary/span")
+	private WebElement findPathToProfile;
+	
+	@FindBy(xpath = "//ul[@id='user-links']/li[3]/details/details-menu/ul/li[3]/a")
+	private WebElement findButtonMyProfile;
+		
+	@FindBy(xpath = "//div[@id='js-pjax-container']/div/div[1]/div[4]/button")
+	private WebElement findButtonAddBio;
+	
+	@FindBy(xpath = "//div[@id='js-pjax-container']/div/div[1]/form/div/textarea")
+	private WebElement findTextArea;
+	
+	@FindBy(xpath = "//div[@id='js-pjax-container']/div/div[1]/form/div/div/div/button[1]")
+	private WebElement findButtonSaveBio;
+	
+	@FindBy(xpath = "//div[@id='js-pjax-container']/div/div[1]/div[4]/div[1]/div[text()='Junior Java Automation Engineer']")
+	private WebElement findLineWithNewBio;
+	
 	public LoginPage(WebDriver driver)
 	{
 		super(driver);
@@ -49,5 +68,33 @@ public class LoginPage extends AbstractPage
 	{
 		return linkLoggedInUser.getAttribute("content");
 	}
+	
+	public void addBio(String newBIO) {
+		findPathToProfile.click();
+		findButtonMyProfile.click();
+		findButtonAddBio.click();
+		findTextArea.clear();
+		findTextArea.sendKeys(newBIO);
+		findButtonSaveBio.click();
+	}
+	
+	public String findlineWasAddedInBio()
+	{
+		//<div>Junior Java Automation Engineer </div>
+		return findLineWithNewBio.getText();//get Text dont work
+	}
+	
+//	public boolean pageContains_lineNewUserName(String enter_username) {
+//		try {
+//			lineNewUserName.isDisplayed();
+//			return true;
+//		} catch (NoSuchElementException e) {
+//			return false;
+//		}
+//	}
+	
+//	public String pageContains_lineNewUserName() {
+//		return lineNewUserName.getText();
+//	}
 
 }

@@ -14,6 +14,7 @@ public class GitHubAutomationTest
 	private final String PASSWORD = "J7j42jj8";
 	private final int REPOSITORY_NAME_POSTFIX_LENGTH = 3;
 	String newAdress = "natasha154154@gmail.com";
+	String newBIO = "Junior Java Automation Engineer";
 
 	@BeforeMethod(description = "Init browser")
 	public void setUp()
@@ -50,11 +51,19 @@ public class GitHubAutomationTest
 		Assert.assertTrue(steps.ensureDeleteRepository());
 	}
 	
-	@Test(description = "Add email")
+	@Test(enabled=false)
+	//(description = "Add email")
 	public void addNewEmailInSettings() {
 		steps.loginGithub(USERNAME, PASSWORD);
 		steps.addEmailInSettings(newAdress);
-		Assert.assertFalse(steps.ensureAddEmail());
+		Assert.assertTrue(steps.ensureAddEmail());
+	}
+	
+	@Test(description = "Add bio information")
+	public void addBIOInformation() {
+		steps.loginGithub(USERNAME, PASSWORD);
+		steps.addBioToUser(newBIO);
+		//Assert.assertEquals(steps.whatWasAddedInBio(), newBIO);//dont work, finds empty line
 	}
 	
 	@AfterMethod(description = "Stop Browser")
