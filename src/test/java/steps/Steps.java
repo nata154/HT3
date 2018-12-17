@@ -103,4 +103,9 @@ public class Steps
 		LoginPage loginPage = new LoginPage(driver);
 		return loginPage.findlineWasAddedInBio();
 	}
+	
+	public boolean whatWasAddedInBio2() {
+		LoginPage loginPage = new LoginPage(driver);
+		return loginPage.findlineWasAddedInBio2();
+	}
 }

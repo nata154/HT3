@@ -40,8 +40,9 @@ public class LoginPage extends AbstractPage
 	@FindBy(xpath = "//div[@id='js-pjax-container']/div/div[1]/form/div/div/div/button[1]")
 	private WebElement findButtonSaveBio;
 	
-	@FindBy(xpath = "//div[@id='js-pjax-container']/div/div[1]/div[4]/div[1]/div[text()='Junior Java Automation Engineer']")
+	@FindBy(xpath = "//div[@id='js-pjax-container']//div[text()='Junior Java Automation Engineer']/text()")
 	private WebElement findLineWithNewBio;
+	
 	
 	public LoginPage(WebDriver driver)
 	{
@@ -80,8 +81,17 @@ public class LoginPage extends AbstractPage
 	
 	public String findlineWasAddedInBio()
 	{
+		return findLineWithNewBio.getText();//get Text dont work - returns empty lin
+	}
+	
+//	public String getDeleteUserText() {
+//		return text.getText().substring(0, text.getText().indexOf('?') + 1);
+//	}
+	
+	public boolean findlineWasAddedInBio2()
+	{
 		//<div>Junior Java Automation Engineer </div>
-		return findLineWithNewBio.getText();//get Text dont work
+		return findLineWithNewBio.getText().contains("Junior Java Automation Engineer");//returns empty line
 	}
 	
 //	public boolean pageContains_lineNewUserName(String enter_username) {
